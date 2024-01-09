@@ -1,0 +1,41 @@
+  {
+    S:String
+  #Equals
+    "1"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "2"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "3"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "4"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "5"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "6"
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "7"
+  }

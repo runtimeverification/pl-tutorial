@@ -1,0 +1,5 @@
+{
+  S:String
+#Equals
+  "7\nReachable with halt, but not with abort.\n"
+}

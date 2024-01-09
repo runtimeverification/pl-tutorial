@@ -1,0 +1,5 @@
+{
+  S:String
+#Equals
+  "Add numbers up to (<= 0 to quit)? Sum = 55\nAdd numbers up to (<= 0 to quit)? "
+}

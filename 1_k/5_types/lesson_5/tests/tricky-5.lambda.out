@@ -1,0 +1,5 @@
+{
+  T:Type
+#Equals
+  ( int -> ?T5:Type ) -> ( int -> ?T5:Type )
+}

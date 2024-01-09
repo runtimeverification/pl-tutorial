@@ -1,0 +1,11 @@
+  {
+    S:String
+  #Equals
+    ""
+  }
+#Or
+  {
+    S:String
+  #Equals
+    "child spawned\n"
+  }

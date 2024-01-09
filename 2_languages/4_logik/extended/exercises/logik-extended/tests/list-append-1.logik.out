@@ -1,0 +1,1 @@
+Solution ==K ( V:Term |-> [ a , .Vals | [ b , .Vals | [ .Vals ] ] ] )
