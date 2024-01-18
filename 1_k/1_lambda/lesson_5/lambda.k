@@ -22,8 +22,21 @@ endmodule
 
 module LAMBDA
   imports LAMBDA-SYNTAX
-  imports SUBSTITUTION
   imports DOMAINS
+
+  syntax Exp ::= Exp "[" Exp "/" KVar "]" [function]
+  rule X:Val [_ / _] => X [owise]
+
+  rule X [V / X] => V
+
+  rule (lambda X . E) [V / Y] => lambda X . (E[V / Y])
+
+  rule (E1:Exp E2:Exp) [V / X] => E1[V / X] (E2[V / X])
+
+  rule (E1:Exp *  E2:Exp) [V / X] => E1[V / X] *  (E2[V / X])
+  rule (E1:Exp /  E2:Exp) [V / X] => E1[V / X] /  (E2[V / X])
+  rule (E1:Exp +  E2:Exp) [V / X] => E1[V / X] +  (E2[V / X])
+  rule (E1:Exp <= E2:Exp) [V / X] => E1[V / X] <= (E2[V / X])
 
   syntax KResult ::= Val
 
