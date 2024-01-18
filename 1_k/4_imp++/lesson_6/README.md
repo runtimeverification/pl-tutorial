@@ -142,6 +142,41 @@ Therefore, interesting behaviors may happen; we would like to see them all!
 
     krun spawn.imp --search
 
+However, the above does not work.
+
+`spawn.imp` is an interactive program, which reads a number from the
+standard input. When analyzing programs exhaustively using the search option,
+`krun` has to disable the streaming capabilities (just think about it and you
+will realize why). The best you can do in terms of interactivity with search
+is to pipe some input to `krun`: `krun` will flush the standard input buffer
+into the cells connected to it when creating the initial configuration (will
+do that no matter whether you run it with or without the `--search` option).
+For example:
+
+    echo 23 | krun spawn.imp --search
+
+puts `23` in the standard input buffer, which is then transferred in the
+`<in/>` cell as a list item, and then the exhaustive search procedure is
+invoked.
+
+However, even after piping some input, the `spawn.imp` program outputs
+an error:
+
+    [Error] krun: You must pass --enable-search to kompile to be able to use krun --search with the LLVM backend
+
+As explained in Lesson 3, by default `kompile` optimizes the generated
+language model for execution. In particular, it does not insert any
+backtracking markers where transition attempts should be made, so `krun`
+lacks the information it needs to exhaustively search the generated language
+model.
+
+`kompile` with the search feature enabled:
+
+    kompile imp --enable-search
+
+Now `echo 23 | krun spawn.imp --search` gives us all 12 behaviors of the
+`spawn.imp` program.
+
 We currently have no mechanism for thread synchronization. In the next lesson
 we add a `join` statement, which allows a thread to wait until another completes.
 

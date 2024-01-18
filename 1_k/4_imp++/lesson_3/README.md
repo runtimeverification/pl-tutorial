@@ -4,10 +4,9 @@ copyright: Copyright (c) Runtime Verification, Inc. All Rights Reserved.
 
 # Variable increment; Search
 
-In this lesson we add the semantics of variable increment. In doing so, we
-learn how to tag syntactic constructs and rules and then use such tags to
-instruct the `kompile` tool to generate the desired language model that is
-amenable for exhaustive analysis.
+In this lesson we add the semantics of variable increment. We also learn
+how to instruct the `kompile` tool to instrument the language model for
+exhaustive analysis.
 
 The variable increment rule is self-explanatory:
 
