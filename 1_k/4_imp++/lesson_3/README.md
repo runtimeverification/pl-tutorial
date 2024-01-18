@@ -2,7 +2,7 @@
 copyright: Copyright (c) Runtime Verification, Inc. All Rights Reserved.
 ---
 
-# Tagging; Transition Kompilation Option
+# Variable increment; Search
 
 In this lesson we add the semantics of variable increment. In doing so, we
 learn how to tag syntactic constructs and rules and then use such tags to
@@ -26,8 +26,9 @@ non-deterministic behaviors. One possible execution of the `div.imp` program
 assigns `1` to `y`'s location, for example, but this program manifests several
 other behaviors, too.
 
-To see all the (final-state) behaviors that a program can have, you can call
-the `krun` tool with the option `--search`. For example:
+To see all the (final-state) behaviors that a program can have, you can kompile
+the semantics with `--enable-search` and call the `krun` tool with the option
+`--search`. For example:
 
     krun div.imp --search
 

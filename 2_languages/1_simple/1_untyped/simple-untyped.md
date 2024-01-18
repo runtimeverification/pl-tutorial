@@ -1066,10 +1066,7 @@ declarations.
 
 ## Location lookup
 
-The operation below is straightforward.  Note that we place it in the same
-`lookup` group as the variable lookup rule defined above.  This way,
-both rules will be considered transitions when we include the `lookup`
-tag in the transition option of `kompile`.
+The operation below is straightforward.
 ```k
   syntax Exp ::= lookup(Int)
   rule <k> lookup(L) => V ...</k> <store>... L |-> V:Val ...</store>  [group(lookup)]
@@ -1161,9 +1158,7 @@ The semantics of SIMPLE is now complete.  Make sure you kompile the
 definition with the right options in order to generate the desired model.
 No kompile options are needed if you only only want to execute the definition
 (and thus get an interpreter), but if you want to search for a different
-program behaviors then you need to kompile with the transition option
-including rule groups such as lookup, increment, acquire, etc.  See the
-IMP++ tutorial for what the transition option means how to use it.
+program behaviors then you need to kompile with the --enable-search option
 ```k
 endmodule
 ```
