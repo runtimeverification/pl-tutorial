@@ -6,7 +6,7 @@ on:
       - 'master'
   workflow_dispatch:
 concurrency:
-  group: 'pl-test'
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
