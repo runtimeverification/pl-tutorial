@@ -1,31 +1,32 @@
 name: 'Test PR'
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+    branches:
+      - 'master'
+  workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-  on:
-    pull_request:
-      types: [opened, edited, reopened, synchronize]
-      branches:
-        - 'master'
-      workflow_dispatch:
-        jobs:
-          build-test:
-            name: 'Build And Test'
-            runs-on: [self-hosted, linux, normal]
-            steps:
-              - name: 'Check out code'
-                uses: actions/checkout@v3
-                with:
-                  submodules: recursive
-              - name: 'Start Docker container'
-                run: |
-                  COMMIT="$(cat deps/k_release)"
-                  docker run --name gh-runner-ci --rm -it --detach --workdir /opt/workspace --user $(id -u):$(id -g) -v "$(pwd):/opt/workspace" -v "/etc/passwd:/etc/passwd:ro" -v "/etc/group:/etc/group:ro" runtimeverificationinc/kframework-k:ubuntu-jammy-${COMMIT}
-              - name: 'Start K Server'
-                run: docker exec --detach gh-runner-ci /bin/bash -c 'kserver'
-              - name: 'Test PL-Tutorial'
-                run: docker exec -t gh-runner-ci /bin/bash -c 'make -j4'
-              - name: 'Tear down Docker container'
-                if: always()
-                run: |
-                  docker stop gh-runner-ci
+
+jobs:
+  build-test:
+    name: 'Build And Test'
+    runs-on: [self-hosted, linux, normal]
+    steps:
+      - name: 'Check out code'
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+      - name: 'Start Docker container'
+        run: |
+          COMMIT="$(cat deps/k_release)"
+          docker run --name gh-runner-ci --rm -it --detach --workdir /opt/workspace --user $(id -u):$(id -g) -v "$(pwd):/opt/workspace" -v "/etc/passwd:/etc/passwd:ro" -v "/etc/group:/etc/group:ro" runtimeverificationinc/kframework-k:ubuntu-jammy-${COMMIT}
+      - name: 'Start K Server'
+        run: docker exec --detach gh-runner-ci /bin/bash -c 'kserver'
+      - name: 'Test PL-Tutorial'
+        run: docker exec -t gh-runner-ci /bin/bash -c 'make -j4'
+      - name: 'Tear down Docker container'
+        if: always()
+        run: |
+          docker stop gh-runner-ci
