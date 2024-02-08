@@ -413,12 +413,12 @@ definition.
 
   rule <k> X:Id => V ...</k>
        <env>... X |-> L ...</env>
-       <store>... L |-> V:Val ...</store>  [group(lookup)]
+       <store>... L |-> V:Val ...</store>
 
 
   context ++(HOLE => lvalue(HOLE))
   rule <k> ++loc(L) => I +Int 1 ...</k>
-       <store>... L |-> (I:Int => I +Int 1) ...</store>  [group(increment)]
+       <store>... L |-> (I:Int => I +Int 1) ...</store>
 
 
   rule I1 + I2 => I1 +Int I2
@@ -468,14 +468,12 @@ interestingly, the semantics of return stays unchanged.
   rule return; => return nothing;
 
 
-  rule <k> read() => I ...</k> <input> ListItem(I:Int) => .List ...</input>  [group(read)]
+  rule <k> read() => I ...</k> <input> ListItem(I:Int) => .List ...</input>
 
 
   context (HOLE => lvalue(HOLE)) = _
 
   rule <k> loc(L) = V:Val => V ...</k> <store>... L |-> (_ => V) ...</store>
-    [group(assignment)]
-
 
   rule {} => .
   rule <k> { S } => S ~> setEnv(Env) ...</k>  <env> Env </env>
@@ -491,7 +489,6 @@ interestingly, the semantics of return stays unchanged.
   rule while (E) S => if (E) {S while(E)S}
 
   rule <k> print(V:Val, Es => Es); ...</k> <output>... .List => ListItem(V) </output>
-    [group(print)]
   rule print(.Vals); => .
 
 
@@ -538,7 +535,7 @@ from SIMPLE unchanged.
   rule <k> acquire V:Val; => . ...</k>
        <holds>... .Map => V |-> 0 ...</holds>
        <busy> Busy (.Set => SetItem(V)) </busy>
-    when (notBool(V in Busy:Set))  [group(acquire)]
+    when (notBool(V in Busy:Set))
 
   rule <k> acquire V; => . ...</k>
        <holds>... V:Val |-> (N:Int => N +Int 1) ...</holds>
@@ -551,7 +548,7 @@ from SIMPLE unchanged.
        <busy>... SetItem(V) => .Set ...</busy>
 
   rule <k> rendezvous V:Val; => . ...</k>
-       <k> rendezvous V; => . ...</k>  [group(rendezvous)]
+       <k> rendezvous V; => . ...</k>
 ```
 
 ## Unchanged auxiliary operations from untyped SIMPLE
@@ -566,7 +563,7 @@ from SIMPLE unchanged.
   /*
   syntax KItem ::= lookup(Int)
   */
-  rule <k> lookup(L) => V ...</k> <store>... L |-> V:Val ...</store>  [group(lookup)]
+  rule <k> lookup(L) => V ...</k> <store>... L |-> V:Val ...</store>
 
   syntax KItem ::= setEnv(Map)
   rule <k> setEnv(Env) => . ...</k>  <env> _ => Env </env>
@@ -915,7 +912,7 @@ method call or the array access.
 ```k
   rule <k> (X:Id => V)(_:Exps) ...</k>
        <env>... X |-> L ...</env>
-       <store>... L |-> V:Val ...</store>  [group(lookup)]
+       <store>... L |-> V:Val ...</store>
 
   rule <k> (X:Id => this . X)(_:Exps) ...</k>
        <env> Env </env>
@@ -954,7 +951,6 @@ task as a replacement for the method.  When that happens, we just
 lookup the value at location `L`:
 ```k
   rule <k> (lookup(L) => V)(_:Exps) ...</k>  <store>... L |-> V:Val ...</store>
-    [group(lookup)]
 ```
 The value `V` looked up above is expected to be a method closure,
 in which case the semantics of method application given above will

@@ -14,7 +14,7 @@ anywhere a statement can occur.  In this tutorial we will learn the following:
 * How to refine configurations as a language evolves.
 * How to define and use fresh elements of desired sorts.
 * How to tag syntactic constructs and rules, and how to use such tags
-  with the `superheat`/`supercool`/`transition` options of `kompile`.
+  with the `superheat`/`supercool` options of `kompile`.
 * How the `search` option of `krun` works.
 * How to stream cells holding semantic lists to the standard input/output,
   and thus obtain interactive interpreters for the defined languages.
