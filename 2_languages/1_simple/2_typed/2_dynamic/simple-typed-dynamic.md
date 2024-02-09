@@ -294,7 +294,7 @@ When done with the first pass, call `main()`.
 ```k
   rule <k> X:Id => V ...</k>
        <env>... X |-> L ...</env>
-       <store>... L |-> V:Val ...</store>  [group(lookup)]
+       <store>... L |-> V:Val ...</store>
 ```
 
 ### Variable/Array increment
@@ -302,7 +302,7 @@ When done with the first pass, call `main()`.
 ```k
   context ++(HOLE => lvalue(HOLE))
   rule <k> ++loc(L) => I +Int 1 ...</k>
-       <store>... L |-> (I:Int => I +Int 1) ...</store>  [group(increment)]
+       <store>... L |-> (I:Int => I +Int 1) ...</store>
 ```
 
 ### Arithmetic operators
@@ -385,7 +385,7 @@ completed to return the `nothing` value tagged as expected.
 ### Read
 
 ```k
-  rule <k> read() => I ...</k> <input> ListItem(I:Int) => .List ...</input>  [group(read)]
+  rule <k> read() => I ...</k> <input> ListItem(I:Int) => .List ...</input>
 ```
 
 ### Assignment
@@ -396,7 +396,7 @@ preserved:
   context (HOLE => lvalue(HOLE)) = _
 
   rule <k> loc(L) = V:Val => V ...</k> <store>... L |-> (V' => V) ...</store>
-    when typeOf(V) ==K typeOf(V')  [group(assignment)]
+    when typeOf(V) ==K typeOf(V')
 ```
 
 ### Statements
@@ -438,7 +438,7 @@ preserved:
 We only allow printing integers and strings:
 ```k
   rule <k> print(V:Val, Es => Es); ...</k> <output>... .List => ListItem(V) </output>
-    when typeOf(V) ==K int orBool typeOf(V) ==K string  [group(print)]
+    when typeOf(V) ==K int orBool typeOf(V) ==K string
   rule print(.Vals); => .
 ```
 
@@ -509,7 +509,7 @@ values, in which case our semantics below works fine:
    rule <k> acquire V:Val; => . ...</k>
         <holds>... .Map => V |-> 0 ...</holds>
         <busy> Busy (.Set => SetItem(V)) </busy>
-     when (notBool(V in Busy:Set))  [group(acquire)]
+     when (notBool(V in Busy:Set))
 
    rule <k> acquire V; => . ...</k>
         <holds>... V:Val |-> (N:Int => N +Int 1) ...</holds>
@@ -530,7 +530,7 @@ values, in which case our semantics below works fine:
 
 ```k
    rule <k> rendezvous V:Val; => . ...</k>
-        <k> rendezvous V; => . ...</k>  [group(rendezvous)]
+        <k> rendezvous V; => . ...</k>
 ```
 
 ### Auxiliary declarations and operations
@@ -546,7 +546,7 @@ into a list of variable declarations.
 Location lookup.
 ```k
   syntax Exp ::= lookup(Int)  // see NOTES.md for why Exp instead of KItem
-  rule <k> lookup(L) => V ...</k> <store>... L |-> V:Val ...</store>  [group(lookup)]
+  rule <k> lookup(L) => V ...</k> <store>... L |-> V:Val ...</store>
 ```
 Environment recovery.
 ```k
