@@ -27,5 +27,5 @@ module LAMBDA
        <store>... N |-> V ...</store>
 
 // Auxiliary task
-  rule <k> _:Val ~> (Rho => .) ...</k> <env> _ => Rho </env>
+  rule <k> _:Val ~> (Rho => .K) ...</k> <env> _ => Rho </env>
 endmodule

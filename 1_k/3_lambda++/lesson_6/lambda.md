@@ -126,7 +126,7 @@ semantics, like it was above. It is so useful, that there are discussions
 in the **K** team to add it to the set of pre-defined **K** features.
 
 ```k
-  rule <k> _:Val ~> (Rho => .) ...</k> <env> _ => Rho </env>
+  rule <k> _:Val ~> (Rho => .K) ...</k> <env> _ => Rho </env>
 ```
 
 ### Arithmetic Constructs

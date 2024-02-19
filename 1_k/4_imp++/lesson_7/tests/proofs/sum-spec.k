@@ -19,14 +19,14 @@ claim
     ...</env>
   ...</thread></threads>
   <input>
-    ListItem ( #buffer ( "\n" ~> . ) )
+    ListItem ( #buffer ( "\n" ~> .K ) )
     ListItem ( "off" )
     ListItem ( #istream ( 0 ) )
   </input>
   <output>
     ListItem ( #ostream ( 1 ) )
     ListItem ( "off" )
-    ListItem ( #buffer ( "" ~> . ) )
+    ListItem ( #buffer ( "" ~> .K ) )
   </output>
   <store>...
     LN   |-> (N:Int => 0)
@@ -56,14 +56,14 @@ claim
     </env>
   ...</thread></threads>
   <input>
-    ListItem ( #buffer ( "\n" ~> . ) )
+    ListItem ( #buffer ( "\n" ~> .K ) )
     ListItem ( "off" )
     ListItem ( #istream ( 0 ) )
   </input>
   <output>
     ListItem ( #ostream ( 1 ) )
     ListItem ( "off" )
-    ListItem ( #buffer ( "" ~> . ) )
+    ListItem ( #buffer ( "" ~> .K ) )
   </output>
   <store>
     .Map

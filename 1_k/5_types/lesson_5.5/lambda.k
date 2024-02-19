@@ -50,5 +50,5 @@ module LAMBDA
 
   rule let X = E in E' => (lambda X . E') E
 
-  rule <k> _T:Type ~> (env(TEnv:Map) => .) ...</k> <tenv> _:Map => TEnv </tenv>
+  rule <k> _T:Type ~> (env(TEnv:Map) => .K) ...</k> <tenv> _:Map => TEnv </tenv>
 endmodule
