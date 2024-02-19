@@ -55,7 +55,7 @@ module IMP
        <store>... N |-> (I => I +Int 1) ...</store>
   rule <k> read() => I ...</k>
        <input> ListItem(I:Int) => .List ...</input>
-  rule I1 / I2 => I1 /Int I2  when I2 =/=Int 0
+  rule I1 / I2 => I1 /Int I2  requires I2 =/=Int 0
   rule I1 + I2 => I1 +Int I2
   rule - I => 0 -Int I
   rule Str1 + Str2 => Str1 +String Str2

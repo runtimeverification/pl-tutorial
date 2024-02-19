@@ -51,7 +51,7 @@ module IMP
   rule <k> ++X => I +Int 1 ...</k>
        <env>... X |-> N ...</env>
        <store>... N |-> (I => I +Int 1) ...</store>
-  rule I1 / I2 => I1 /Int I2  when I2 =/=Int 0
+  rule I1 / I2 => I1 /Int I2  requires I2 =/=Int 0
   rule I1 + I2 => I1 +Int I2
   rule - I => 0 -Int I
 // BExp
