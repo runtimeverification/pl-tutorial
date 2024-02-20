@@ -302,7 +302,7 @@ configuration.
 ### Arithmetic constructs
 
 ```k
-  rule I1 / I2 => I1 /Int I2  when I2 =/=Int 0
+  rule I1 / I2 => I1 /Int I2  requires I2 =/=Int 0
   rule I1 + I2 => I1 +Int I2
   rule - I => 0 -Int I
 ```
