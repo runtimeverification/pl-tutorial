@@ -155,7 +155,7 @@ contents, thus effectively giving them a bracket semantics; we can afford to
 do this only because we have no block-local variable declarations yet in IMP.
 
 ```k
-  rule {} => .
+  rule {} => .K
   rule {S} => S
 ```
 
@@ -165,7 +165,7 @@ to be declared, otherwise the semantics will get stuck.  At the same time,
 the assignment is dissolved.
 
 ```k
-  rule <k> X = I:Int; => . ...</k> <state>... X |-> (_ => I) ...</state>
+  rule <k> X = I:Int; => .K ...</k> <state>... X |-> (_ => I) ...</state>
 ```
 
 ### Sequential composition

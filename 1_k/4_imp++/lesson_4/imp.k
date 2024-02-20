@@ -65,10 +65,10 @@ module IMP
   rule true && B => B
   rule false && _ => false
 // Block
-  rule {} => .
+  rule {} => .K
   rule {S} => S
 // Stmt
-  rule <k> X = I:Int; => . ...</k>
+  rule <k> X = I:Int; => .K ...</k>
        <env>... X |-> N ...</env>
        <store>... N |-> (_ => I) ...</store>
   rule S1:Stmt S2:Stmt => S1 ~> S2
@@ -79,7 +79,7 @@ module IMP
   rule <k> int (X,Xs => Xs); ...</k>
        <env> Rho => Rho[X <- !N:Int] </env>
        <store>... .Map => !N |-> 0 ...</store>
-  rule int .Ids; => .
+  rule int .Ids; => .K
 
   syntax Printable ::= Int | String
 /* currently it is necessary to subsort Printable to AExp,
@@ -88,5 +88,5 @@ module IMP
   context print(HOLE:AExp, _);
   rule <k> print(P:Printable,AEs => AEs); ...</k>
        <output>... .List => ListItem(P) </output>
-  rule print(.AExps); => .
+  rule print(.AExps); => .K
 endmodule

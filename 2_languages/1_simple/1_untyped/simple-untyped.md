@@ -440,7 +440,7 @@ structure.
 ```k
   syntax KItem ::= "undefined"  [latex(\bot)]
 
-  rule <k> var X:Id; => . ...</k>
+  rule <k> var X:Id; => .K ...</k>
        <env> Env => Env[X <- L] </env>
        <store>... .Map => L |-> undefined ...</store>
        <nextLoc> L => L +Int 1 </nextLoc>
@@ -467,7 +467,7 @@ declarations.
 ```k
   context var _:Id[HOLE];
 
-  rule <k> var X:Id[N:Int]; => . ...</k>
+  rule <k> var X:Id[N:Int]; => .K ...</k>
        <env> Env => Env[X <- L] </env>
        <store>... .Map => L |-> array(L +Int 1, N)
                           (L +Int 1) ... (L +Int N) |-> undefined ...</store>
@@ -528,7 +528,7 @@ SIMPLE, also defined in **K** (see `examples/simple/typed/static`),
 discards programs which do not respect this requirement.
 
 ```k
-  rule <k> function F(Xs) S => . ...</k>
+  rule <k> function F(Xs) S => .K ...</k>
        <env> Env => Env[F <- L] </env>
        <store>... .Map => L |-> lambda(Xs, S) ...</store>
        <nextLoc> L => L +Int 1 </nextLoc>
@@ -774,7 +774,7 @@ for variable declarations, as we did above.  One can make the two rules below
 computational if one wants them to count as computational steps.
 
 ```k
-  rule {} => .
+  rule {} => .K
   rule <k> { S } => S ~> setEnv(Env) ...</k>  <env> Env </env>
 ```
 The basic definition of environment recovery is straightforward and
@@ -834,7 +834,7 @@ Expression statements are only used for their side effects, so their result
 value is simply discarded.  Common examples of expression statements are ones
 of the form `++x;`, `x=e;`, `e1[e2]=e3;`, etc.
 ```k
-  rule _:Val; => .
+  rule _:Val; => .K
 ```
 
 ## Conditional
@@ -868,7 +868,7 @@ its evaluated arguments to the output buffer, and discard the residual
 `print` statement with an empty list of arguments.
 ```k
   rule <k> print(V:Val, Es => Es); ...</k> <output>... .List => ListItem(V) </output>
-  rule print(.Vals); => .
+  rule print(.Vals); => .K
 ```
 
 ## Exceptions
@@ -909,7 +909,7 @@ exception stack.  The three rules below modularly do precisely the above.
        </control>
        <env> Env </env>
 
-  rule <k> popx => . ...</k>
+  rule <k> popx => .K ...</k>
        <xstack> ListItem(_) => .List ...</xstack>
 
   rule <k> throw V:Val; ~> _ => { var X = V; S2 } ~> K </k>
@@ -971,7 +971,7 @@ by a thread.  The unique identifier of the terminated thread is also collected
 into the `terminated` cell, so the `join` construct knows which
 threads have terminated.
 ```k
-  rule (<thread>... <k>.</k> <holds>H</holds> <id>T</id> ...</thread> => .Bag)
+  rule (<thread>... <k>.K</k> <holds>H</holds> <id>T</id> ...</thread> => .Bag)
        <busy> Busy => Busy -Set keys(H) </busy>
        <terminated>... .Set => SetItem(T) ...</terminated>
 ```
@@ -983,7 +983,7 @@ the identifier of the thread to be joined is in the `terminated` cell.
 If yes, then the `join` statement dissolves and the joining thread
 continues normally; if not, then the joining thread gets stuck.
 ```k
-  rule <k> join T:Int; => . ...</k>
+  rule <k> join T:Int; => .K ...</k>
        <terminated>... SetItem(T) ...</terminated>
 ```
 
@@ -998,12 +998,12 @@ the side condition of the first rule).
 counter for the lock (the locks are re-entrant).  These two cases are captured
 by the two rules below:
 ```k
-  rule <k> acquire V:Val; => . ...</k>
+  rule <k> acquire V:Val; => .K ...</k>
        <holds>... .Map => V |-> 0 ...</holds>
        <busy> Busy (.Set => SetItem(V)) </busy>
     requires (notBool(V in Busy))
 
-  rule <k> acquire V; => . ...</k>
+  rule <k> acquire V; => .K ...</k>
        <holds>... V:Val |-> (N => N +Int 1) ...</holds>
 ```
 
@@ -1017,11 +1017,11 @@ is to decrement the lock counter.
 from its `holds` cell and also from the the shared `busy` cell,
 so other threads can acquire it if they need to.
 ```k
-  rule <k> release V:Val; => . ...</k>
+  rule <k> release V:Val; => .K ...</k>
        <holds>... V |-> (N => N -Int 1) ...</holds>
     requires N >Int 0
 
-  rule <k> release V; => . ...</k> <holds>... V:Val |-> 0 => .Map ...</holds>
+  rule <k> release V; => .K ...</k> <holds>... V:Val |-> 0 => .Map ...</holds>
        <busy>... SetItem(V) => .Set ...</busy>
 ```
 
@@ -1042,8 +1042,8 @@ the `thread` cell, the only way to concretize the rule below to the
 actual configuration of SIMPLE is to include each `k` cell in a
 `thread` cell.
 ```k
-  rule <k> rendezvous V:Val; => . ...</k>
-       <k> rendezvous V; => . ...</k>
+  rule <k> rendezvous V:Val; => .K ...</k>
+       <k> rendezvous V; => .K ...</k>
 ```
 
 ## Auxiliary declarations and operations
@@ -1078,7 +1078,7 @@ IMP++ tutorial:
 // TODO: eliminate the env wrapper, like we did in IMP++
 
   syntax KItem ::= setEnv(Map)
-  rule <k> setEnv(Env) => . ...</k> <env> _ => Env </env>
+  rule <k> setEnv(Env) => .K ...</k> <env> _ => Env </env>
 ```
 While theoretically sufficient, the basic definition for environment
 recovery alone is suboptimal.  Consider a loop `while (E)S`,
@@ -1093,7 +1093,7 @@ recovery tasks, we only need to keep the last one.  The elegant rule below
 does precisely that, thus avoiding the unnecessary computation explosion
 problem:
 ```k
-  rule (setEnv(_) => .) ~> setEnv(_)
+  rule (setEnv(_) => .K) ~> setEnv(_)
 ```
 In fact, the above follows a common convention in **K** for recovery
 operations of cell contents: the meaning of a computation task of the form
