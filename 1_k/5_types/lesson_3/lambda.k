@@ -54,5 +54,5 @@ module LAMBDA
        <tenv> Rho => Rho[X <- T] </tenv>
 
 // Auxiliary type environment recovery
-  rule <k> _:Type ~> (Rho => .) ...</k> <tenv> _ => Rho </tenv>
+  rule <k> _:Type ~> (Rho => .K) ...</k> <tenv> _ => Rho </tenv>
 endmodule
