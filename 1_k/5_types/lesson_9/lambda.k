@@ -4,7 +4,7 @@
 // uses both unification and symbolic reasoning.
 // It is intended for documentation and academic purposes only.
 
-require "unification.k"
+requires "unification.k"
 
 module LAMBDA
   imports DOMAINS
