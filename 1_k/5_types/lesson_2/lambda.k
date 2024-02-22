@@ -1,6 +1,6 @@
 // Copyright (c) Runtime Verification, Inc. All Rights Reserved.
 
-require "substitution.md"
+requires "substitution.md"
 
 module LAMBDA
   imports DOMAINS

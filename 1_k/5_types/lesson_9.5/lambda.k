@@ -4,8 +4,8 @@
 // uses substitution, unification and symbolic reasoning.
 // It is intended for documentation and academic purposes only.
 
-require "unification.k"
-require "substitution.md"
+requires "unification.k"
+requires "substitution.md"
 
 module LAMBDA-SYNTAX
   imports DOMAINS-SYNTAX

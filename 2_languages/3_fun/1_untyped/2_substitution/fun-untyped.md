@@ -24,8 +24,8 @@ the reader should consult the emvironment-based definition of FUN.
 ## Syntax
 
 ```k
-require "substitution.md"
-//require "modules/pattern-matching.k"
+requires "substitution.md"
+//requires "modules/pattern-matching.k"
 
 module FUN-UNTYPED-COMMON
   imports DOMAINS-SYNTAX
@@ -123,16 +123,16 @@ module FUN-UNTYPED-COMMON
 ## Additional Priorities
 
 ```k
-  syntax priorities @__FUN-UNTYPED-COMMON
-                  > ___FUN-UNTYPED-COMMON
-                  > arith
-                  > _:=__FUN-UNTYPED-COMMON
-                  > let_in__FUN-UNTYPED-COMMON
-                    letrec_in__FUN-UNTYPED-COMMON
-                    if_then_else__FUN-UNTYPED-COMMON
-                  > _;__FUN-UNTYPED-COMMON
-                  > fun__FUN-UNTYPED-COMMON
-                  > datatype_=___FUN-UNTYPED-COMMON
+  syntax priority @__FUN-UNTYPED-COMMON
+                > ___FUN-UNTYPED-COMMON
+                > arith
+                > _:=__FUN-UNTYPED-COMMON
+                > let_in__FUN-UNTYPED-COMMON
+                  letrec_in__FUN-UNTYPED-COMMON
+                  if_then_else__FUN-UNTYPED-COMMON
+                > _;__FUN-UNTYPED-COMMON
+                > fun__FUN-UNTYPED-COMMON
+                > datatype_=___FUN-UNTYPED-COMMON
 endmodule
 
 module FUN-UNTYPED-MACROS
