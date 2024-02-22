@@ -14,7 +14,7 @@ The `requires` keyword takes a `.k` file containing language features that
 are needed for the current definition, which can be found in the
 [k-distribution/include/kframework/builtin](../../../../include/kframework/builtin/README.md) folder.  Thus, the command
 
-    require "substitution.k"
+    requires "substitution.k"
 
 says that the subsequent definition of LAMBDA needs the generic substitution,
 which is predefined in file `substitution.k` under the folder

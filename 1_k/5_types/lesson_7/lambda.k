@@ -4,7 +4,7 @@
 // uses both substitution and symbolic reasoning.
 // It is intended for documentation and academic purposes only.
 
-require "substitution.md"
+requires "substitution.md"
 
 module LAMBDA
   imports DOMAINS

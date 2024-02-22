@@ -3,7 +3,7 @@
 // NOTE: this definition is not runnable as is.
 // It is intended for documentation and academic purposes only.
 
-require "unification.k"
+requires "unification.k"
 
 module LOGIK-COMMON
   imports DOMAINS-SYNTAX
