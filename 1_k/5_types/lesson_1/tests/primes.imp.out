@@ -1,6 +1,6 @@
 <T>
   <k>
-    stmt ~> .
+    stmt ~> .K
   </k>
   <tenv>
     i |-> int
