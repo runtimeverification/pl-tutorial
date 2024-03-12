@@ -26,8 +26,8 @@ module IMP-SYNTAX
                  > "spawn" Stmt
                  > Stmt Stmt                  [left]
 
-  syntax Ids   ::= List{Id,","}               [klabel(exps)]
-  syntax AExps ::= List{AExp,","}             [klabel(exps)]
+  syntax Ids   ::= List{Id,","}               [overload(exps)]
+  syntax AExps ::= List{AExp,","}             [overload(exps)]
   syntax AExps ::= Ids
 endmodule
 

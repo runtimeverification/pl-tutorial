@@ -3,7 +3,7 @@
   #Equals
     <T>
       <k>
-        .
+        .K
       </k>
       <env>
         x |-> 0
@@ -21,7 +21,7 @@
   #Equals
     <T>
       <k>
-        .
+        .K
       </k>
       <env>
         x |-> 0
@@ -39,7 +39,7 @@
   #Equals
     <T>
       <k>
-        .
+        .K
       </k>
       <env>
         x |-> 0
