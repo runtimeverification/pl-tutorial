@@ -3,7 +3,7 @@
 module LAMBDA
   imports DOMAINS
   syntax Exp ::= Id
-               | "lambda" Id "." Exp  [latex(\lambda{#1}.{#2})]
+               | "lambda" Id "." Exp
                | Exp Exp              [strict, left]
                | "(" Exp ")"          [bracket]
 

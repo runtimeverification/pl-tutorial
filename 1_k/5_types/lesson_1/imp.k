@@ -12,7 +12,7 @@ module IMP-SYNTAX
                  > "spawn" Block              [strict]
                  > Id "=" AExp                [strict(2)]
   syntax BExp  ::= Bool
-                 | AExp "<=" AExp             [strict, latex({#1}\leq{#2})]
+                 | AExp "<=" AExp             [strict]
                  | "!" BExp                   [strict]
                  | "(" BExp ")"               [bracket]
                  > BExp "&&" BExp             [left, strict]

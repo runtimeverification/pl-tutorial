@@ -381,7 +381,7 @@ object and method closures.
 The semantics below are taken verbatim from the untyped SIMPLE
 definition.
 ```k
-  syntax KItem ::= "undefined"  [latex(\bot)]
+  syntax KItem ::= "undefined"
 
   rule <k> var X:Id; => .K ...</k>
        <env> Env => Env[X <- L] </env>
@@ -583,7 +583,7 @@ from SIMPLE unchanged.
 
 
   syntax Map ::= Int "..." Int "|->" K
-    [function, latex({#1}\ldots{#2}\mapsto{#3})]
+    [function]
   rule N...M |-> _ => .Map  requires N >Int M
   rule N...M |-> K => N |-> K (N +Int 1)...M |-> K  requires N <=Int M
 ```
