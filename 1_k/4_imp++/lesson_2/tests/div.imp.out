@@ -3,7 +3,7 @@
   #Equals
     <T>
       <k>
-        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( 1 ~> . ) ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp1_ ( ++ x ~> . ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> . ) ~> .
+        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( 1 ~> .K ) ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp1_ ( ++ x ~> .K ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> .K ) ~> .K
       </k>
       <env>
         x |-> 0
@@ -21,7 +21,7 @@
   #Equals
     <T>
       <k>
-        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( ++ x / x ~> . ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> . ) ~> .
+        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( ++ x / x ~> .K ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> .K ) ~> .K
       </k>
       <env>
         x |-> 0
@@ -39,7 +39,7 @@
   #Equals
     <T>
       <k>
-        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( x ~> . ) ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp1_ ( ++ x ~> . ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> . ) ~> .
+        ++ x ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp0_ ( x ~> .K ) ~> #freezer_/__IMP-SYNTAX_AExp_AExp_AExp1_ ( ++ x ~> .K ) ~> #freezer_=_;_IMP-SYNTAX_Stmt_Id_AExp1_ ( y ~> .K ) ~> .K
       </k>
       <env>
         x |-> 0
