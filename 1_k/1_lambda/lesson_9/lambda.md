@@ -76,7 +76,7 @@ interleaved) order.
 The initial syntax of our λ-calculus:
 ```k
   syntax Val ::= Id
-               | "lambda" Id "." Exp  [latex(\lambda{#1}.{#2})]
+               | "lambda" Id "." Exp
   syntax Exp ::= Val
                | Exp Exp              [left, strict]
                | "(" Exp ")"          [bracket]
@@ -123,7 +123,7 @@ and faster to execute.
 
 ```k
   syntax Exp ::= "letrec" Id Id "=" Exp "in" Exp [macro]
-               | "mu" Id "." Exp                   [latex(\mu{#1}.{#2})]
+               | "mu" Id "." Exp
   rule letrec F:Id X:Id = E in E' => let F = mu F . lambda X . E in E'
 endmodule
 ```
