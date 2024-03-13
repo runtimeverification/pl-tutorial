@@ -39,7 +39,7 @@ We move all the LAMBDA++ syntax here.
   syntax Exp ::= Val
 // Basic lambda-calculus syntax
                | Id
-               | "lambda" Id "." Exp  [latex(\lambda{#1}.{#2})]
+               | "lambda" Id "." Exp
                | Exp Exp              [strict, left]
                | "(" Exp ")"          [bracket]
 // Arithmetic
@@ -52,7 +52,7 @@ We move all the LAMBDA++ syntax here.
   syntax Exp ::= "if" Exp "then" Exp "else" Exp  [strict(1)] // Conditional
                | "let" Id "=" Exp "in" Exp [macro]           // Let binder
                | "letrec" Id Id "=" Exp "in" Exp [macro]     // Letrec
-               | "mu" Id "." Exp      [latex(\mu{#1}.{#2})]  // Mu
+               | "mu" Id "." Exp                             // Mu
                | "callcc" Exp  [strict]                      // Callcc
 ```
 
@@ -108,7 +108,6 @@ then switch back to caller's environment.
 
 ```k
   syntax Val ::= closure(Map,Id,Exp)
-    [latex(\textsf{closure}_\lambda({#1},{#2},{#3}))]
 
   rule <k> lambda X:Id . E => closure(Rho,X,E) ...</k>
        <env> Rho </env>
@@ -176,7 +175,6 @@ back to the fixed-point.
 
 ```k
   syntax Exp ::= muclosure(Map,Exp)
-    [latex(\textsf{closure}_\mu({#1},{#2}))]
   rule <k> mu X . E => muclosure(Rho[X <- !N], E) ...</k>
        <env> Rho </env>
        <store>... .Map => (!N:Int |-> muclosure(Rho[X <- !N], E)) ...</store>
@@ -192,7 +190,6 @@ supposed to be executed. Forget the environment, and you get a wrong
 
 ```k
   syntax Val ::= cc(Map,K)
-    [latex(\textsf{closure}_{\texttt{callcc}}({#1},{#2}))]
   rule <k> (callcc V:Val => V cc(Rho,K)) ~> K </k> <env> Rho </env>
   rule <k> cc(Rho,K) V:Val ~> _ =>  V ~> K </k> <env> _ => Rho </env>
 endmodule

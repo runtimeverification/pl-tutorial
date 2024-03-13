@@ -5,7 +5,7 @@ module LAMBDA-SYNTAX
   imports ID-SYNTAX
 
   syntax Val ::= Id
-               | "lambda" Id "." Exp  [latex(\lambda{#1}.{#2})]
+               | "lambda" Id "." Exp
   syntax Exp ::= Val
                | Exp Exp              [strict, left]
                | "(" Exp ")"          [bracket]
@@ -23,7 +23,7 @@ module LAMBDA-SYNTAX
   rule let X = E in E':Exp => (lambda X . E') E
 
   syntax Exp ::= "letrec" Id Id "=" Exp "in" Exp [macro]
-               | "mu" Id "." Exp                   [latex(\mu{#1}.{#2})]
+               | "mu" Id "." Exp
   rule letrec F:Id X = E in E' => let F = mu F . lambda X . E in E'
 endmodule
 

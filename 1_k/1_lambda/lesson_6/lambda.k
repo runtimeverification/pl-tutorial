@@ -5,7 +5,7 @@ module LAMBDA-SYNTAX
   imports ID-SYNTAX
 
   syntax Val ::= Id
-               | "lambda" Id "." Exp  [latex(\lambda{#1}.{#2})]
+               | "lambda" Id "." Exp
   syntax Exp ::= Val
                | Exp Exp              [strict, left]
                | "(" Exp ")"          [bracket]
