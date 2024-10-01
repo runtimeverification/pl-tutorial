@@ -1,5 +1,6 @@
 MAKEFILE_PATH := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-ifneq (,$(wildcard ${MAKEFILE_PATH}/../../../include/kframework/ktest.mak))
+ifneq (,${K_HOME})
+else ifneq (,$(wildcard ${MAKEFILE_PATH}/../../../include/kframework/ktest.mak))
 export K_HOME?=${MAKEFILE_PATH}/../../../
 else ifneq (,$(wildcard ${MAKEFILE_PATH}/../include/kframework/ktest.mak))
 export K_HOME?=${MAKEFILE_PATH}/..
